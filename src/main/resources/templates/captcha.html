@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Captcha Page</title>
+    </head>
+    <body>
+        <h1>Too many unsuccessful login attempts.</h1>
+        <h2>Please enter your account details below to login. If your next login is unsuccessful, your account will be locked.</h2>
+        <hr><br>
+        <form method="POST" action="/captcha" data-th-object="${user}">
+            <label for="username">Username: </label>
+            <input type="text" data-th-field="*{username}" id="name">
+            <br><br>
+            <label for="password">Password: </label>
+            <input type="text" data-th-field="*{password}" id="password">
+            <br><br>
+            
+            <!-- Display captcha -->
+            <div>
+                <img src="/captcha/generate" alt="Captcha image">
+            </div>
+            <label for="captcha">Enter captcha</label>
+            <input type="text" id="captcha" name="captcha">
+            <br><br>
+            <button type="submit">Login</button>
+            <div data-th-if="${#fields.hasErrors('global')}">
+                <span data-th-text="${globalError}" id="globalError"></span>
+            </div>
+        </form>
+    </body>
+</html>

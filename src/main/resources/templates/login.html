@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Login Page</title>
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <h2>Please enter your account details below to login.</h2>
+        <hr><br>
+        <form method="POST" action="/auth" data-th-object="${user}">
+            <label for="username">Username: </label>
+            <input type="text" data-th-field="*{username}" id="name">
+            <br><br>
+            <label for="password">Password: </label>
+            <input type="text" data-th-field="*{password}" id="password">
+            <br><br>
+            <button type="submit">Login</button>
+
+            <div>
+                <ul data-th-if="${#fields.hasErrors('global')}">
+                    <li data-th-each="e: ${#fields.errors('global')}" data-th-text="${e}" id="globalError"></li>
+                </ul>
+            </div>
+        </form>
+    </body>
+</html>
